@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="720px" height="480px" style="border:1px solid #d3d3d3;"></canvas>
+
+    <script>
+        let chuNhat = function (x, y, dai, rong) {
+            this.dai = dai;
+            this.rong = rong;
+            this.x = x;
+            this.y = y;
+            // get vs set:
+            this.getDai = function () {
+                return this.dai;
+            }
+            this.getRong = function () {
+                return this.rong;
+            }
+            this.setDai = function (dai) {
+                this.dai = dai;
+            }
+            this.setRong = function (rong) {
+                this.rong = rong;
+            }
+            this.getX = function () {
+                return this.x;
+            }
+            this.getY = function () {
+                return this.y;
+            }
+            //dien tich va chu vi
+            this.dienTich = function () {
+
+                let dienTich = this.getDai() * this.getRong();
+                return dienTich;
+
+            }
+            this.chuVi = function () {
+
+                let chuVi = (this.getDai() + this.getRong()) / 2;
+                return chuVi;
+            }
+            // hcn:
+            this.createHCN = function (x, y, dai, rong) {
+                ctx = document.getElementById('myCanvas').getContext('2d');
+                let color = getRandomColor();
+                ctx.fillStyle = color;
+                ctx.fillRect(this.x, this.y, this.getDai, this.rong);
+
+            }
+            let getRandomColor = function () {
+                let red = getRandomHex();
+                let green = getRandomHex();
+                let blue = getRandomHex();
+                return "rgb(" + red + "," + blue + "," + green + ")";
+            }
+
+            let getRandomHex = function () {
+                return Math.floor(Math.random() * 255);
+            }
+
+        }
+
+
+
+        let rectangle = new chuNhat(10, 80, 210, 102);
+        let draw = rectangle.createHCN();
+        let width = rectangle.getDai();
+        let height = rectangle.getRong();
+        let area = rectangle.dienTich();
+        let permi = rectangle.chuVi();
+        // width = rectangle.setDai(10);
+        // console.log(width);
+
+
+        document.write("Width: " + width + " Height: " + height + " Area: " + area + " Perimeter: " + permi);
+
+
+
+
+
+        
+
+
+
+
+    </script>
+</body>
+
+</html>
